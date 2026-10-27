@@ -6,12 +6,14 @@ const inter = Inter({
   display: "swap",
 });
 import "./globals.css";
+import "./futuristic.css";
 import { currentUser } from "@/lib/server/auth";
 import { AppShell } from "@/components/app-shell";
 export const metadata: Metadata = {
   title: "OpenHouse AI — Realtor Workspace",
+  icons: { icon: "/favicon.svg" },
   description:
-    "Prepare every property for a better open house. Realtor dashboard prototype.",
+    "An elevated workspace for exceptional properties. Organize, prepare, and bring every home into focus.",
 };
 export default async function RootLayout({
   children,
