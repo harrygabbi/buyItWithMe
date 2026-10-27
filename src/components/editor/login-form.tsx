@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { ArrowUpRight, House, Layers3, LockKeyhole, ShieldCheck, Sparkles } from "lucide-react";
+import { ArchitectureScene } from "@/components/architecture-scene";
 export function LoginForm() {
   const router = useRouter();
   const [register, setRegister] = useState(false);
@@ -13,12 +15,22 @@ export function LoginForm() {
   const [error, setError] = useState("");
   return (
     <div className="auth-page">
-      <Card className="auth-card">
-        <div className="brand">
-          OpenHouse <span className="brand-ai">AI</span>
+      <section className="auth-story" aria-labelledby="auth-story-title">
+        <div className="brand"><span className="brand-mark"><House size={23} aria-hidden="true" /></span>OpenHouse <span className="brand-ai">AI</span></div>
+        <div className="auth-story-copy">
+          <span className="hero-kicker"><Sparkles size={13} aria-hidden="true" /> THE FUTURE FEELS LIKE HOME</span>
+          <h2 id="auth-story-title">A better perspective.<br /><span>On every property.</span></h2>
+          <p>One beautiful workspace to bring every detail together. Prepare with confidence. Open the door to what’s next.</p>
         </div>
+        <ArchitectureScene />
+        <div className="auth-story-footer"><span><ShieldCheck size={16} aria-hidden="true" /> Private by design</span><span><Layers3 size={16} aria-hidden="true" /> Built for realtors</span></div>
+      </section>
+      <div className="auth-form-side">
+      <div className="auth-access-label"><span className="signal-dot" /> YOUR PRIVATE WORKSPACE</div>
+      <Card className="auth-card">
+        <span className="auth-lock"><LockKeyhole size={23} aria-hidden="true" /></span>
         <h1>{register ? "Create your workspace" : "Welcome back"}</h1>
-        <p>Private property management for realtors.</p>
+        <p>{register ? "Your next chapter starts here." : "Your properties. Your possibilities. All here."}</p>
         <form
           onSubmit={async (event) => {
             event.preventDefault();
@@ -61,6 +73,7 @@ export function LoginForm() {
                 required
                 maxLength={120}
                 autoComplete="name"
+                placeholder="Alex Morgan"
                 value={name}
                 disabled={busy}
                 onChange={(e) => setName(e.target.value)}
@@ -75,6 +88,7 @@ export function LoginForm() {
               type="email"
               required
               autoComplete="email"
+              placeholder="you@yourbrokerage.com"
               value={email}
               disabled={busy}
               onChange={(e) => setEmail(e.target.value)}
@@ -86,6 +100,7 @@ export function LoginForm() {
               className="field"
               id="auth-password"
               type="password"
+              placeholder="Enter your password"
               required
               minLength={12}
               maxLength={128}
@@ -103,6 +118,7 @@ export function LoginForm() {
           )}
           <Button type="submit" disabled={busy}>
             {busy ? "Please wait…" : register ? "Create account" : "Sign in"}
+            {!busy && <ArrowUpRight size={16} aria-hidden="true" />}
           </Button>
           <Button
             type="button"
@@ -119,6 +135,8 @@ export function LoginForm() {
           </Button>
         </form>
       </Card>
+      <p className="auth-footnote"><ShieldCheck size={13} aria-hidden="true" /> A secure space for your property portfolio.</p>
+      </div>
     </div>
   );
 }

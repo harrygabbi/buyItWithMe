@@ -10,6 +10,9 @@ import {
   Settings2,
   Menu,
   X,
+  ArrowUpRight,
+  Sparkles,
+  ShieldCheck,
 } from "lucide-react";
 import type { Realtor } from "@/lib/server/auth";
 import { SignOutButton } from "@/components/editor/sign-out-button";
@@ -134,9 +137,15 @@ export function AppShell({
       </header>
       <aside className="sidebar" aria-label="Main navigation">
         <Brand />
-        <div className="workspace-label">WORKSPACE</div>
+        <div className="workspace-label">YOUR WORKSPACE</div>
         <Navigation />
         <div className="sidebar-bottom">
+          <div className="sidebar-note">
+            <Sparkles size={19} aria-hidden="true" />
+            <strong>Great homes.<br />Greater possibilities.</strong>
+            <p>Make your next first impression exceptional.</p>
+            <Link href="/properties/new">Create a property <ArrowUpRight size={14} aria-hidden="true" /></Link>
+          </div>
           <Profile user={user} />
         </div>
       </aside>
@@ -186,14 +195,14 @@ export function AppShell({
                     : "Property profile"}
             </strong>
           </span>
-          <SignOutButton />
+          <div className="topbar-actions"><span className="workspace-pill"><span /> Private workspace</span><SignOutButton /></div>
         </div>
         <main id="main" tabIndex={-1}>
           {children}
         </main>
         <footer className="footer">
-          <span>OpenHouse AI</span>
-          <span>Private workspace · CAD pricing</span>
+          <span>OpenHouse AI <span className="footer-dot">/</span> A new perspective on property</span>
+          <span className="footer-security"><ShieldCheck size={12} aria-hidden="true" /> Private workspace · CAD pricing</span>
         </footer>
       </div>
     </div>

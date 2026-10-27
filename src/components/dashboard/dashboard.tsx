@@ -7,6 +7,7 @@ import { Overview } from "./overview";
 import { PreparationOverview } from "./preparation-overview";
 import { NextOpenHouse } from "./portfolio-insights";
 import { useProperties } from "@/lib/properties/use-properties";
+import { WorkspaceHero } from "./workspace-hero";
 
 export function Dashboard({ title = "Dashboard" }: { title?: string }) {
   const { properties, loading, error, reload } = useProperties();
@@ -36,6 +37,7 @@ export function Dashboard({ title = "Dashboard" }: { title?: string }) {
     <>
       <header className="page-heading">
         <div>
+          <span className="page-kicker">YOUR PROPERTY COMMAND CENTER</span>
           <h1>{title}</h1>
           <p>Manage your properties and prepare for your next open house.</p>
         </div>
@@ -46,6 +48,7 @@ export function Dashboard({ title = "Dashboard" }: { title?: string }) {
           </Link>
         </Button>
       </header>
+      <WorkspaceHero />
       {notice && (
         <div className="success-notice toast" role="status">
           <CheckCircle2 size={18} aria-hidden="true" />
@@ -84,10 +87,9 @@ export function Dashboard({ title = "Dashboard" }: { title?: string }) {
           <div className="prototype-notice">
             <Info size={16} aria-hidden="true" />
             <p>
-              <strong>Your private property workspace.</strong> Changes are
-              stored in PostgreSQL. Photos and document references are
-              accessible only to your signed-in account. Visitor access and
-              publishing come later.
+              <strong>A space that’s yours.</strong> Your property information,
+              photos, and documents are private to your account. Public sharing
+              and publishing are coming later.
             </p>
           </div>
         </>
