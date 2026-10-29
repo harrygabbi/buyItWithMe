@@ -8,8 +8,9 @@ import { PreparationOverview } from "./preparation-overview";
 import { NextOpenHouse } from "./portfolio-insights";
 import { useProperties } from "@/lib/properties/use-properties";
 import { WorkspaceHero } from "./workspace-hero";
+import { PortfolioPreview } from "./portfolio-preview";
 
-export function Dashboard({ title = "Dashboard" }: { title?: string }) {
+export function Dashboard({ title = "Your portfolio, at a glance." }: { title?: string }) {
   const { properties, loading, error, reload } = useProperties();
   const [notice, setNotice] = useState("");
   useEffect(() => {
@@ -37,9 +38,9 @@ export function Dashboard({ title = "Dashboard" }: { title?: string }) {
     <>
       <header className="page-heading">
         <div>
-          <span className="page-kicker">YOUR PROPERTY COMMAND CENTER</span>
+          <span className="page-kicker">YOUR WORKSPACE</span>
           <h1>{title}</h1>
-          <p>Manage your properties and prepare for your next open house.</p>
+          <p>A clear view of your properties and what comes next.</p>
         </div>
         <Button asChild>
           <Link href="/properties/new">
@@ -48,7 +49,6 @@ export function Dashboard({ title = "Dashboard" }: { title?: string }) {
           </Link>
         </Button>
       </header>
-      <WorkspaceHero />
       {notice && (
         <div className="success-notice toast" role="status">
           <CheckCircle2 size={18} aria-hidden="true" />
@@ -83,11 +83,13 @@ export function Dashboard({ title = "Dashboard" }: { title?: string }) {
               property.nextOpenHouse &&
               new Date(property.nextOpenHouse) >= new Date(),
           ) && <NextOpenHouse properties={properties} />}
-          <PreparationOverview properties={properties} />
+          <PortfolioPreview properties={properties} />
+          {properties.length > 0 && <PreparationOverview properties={properties} />}
+          <WorkspaceHero />
           <div className="prototype-notice">
             <Info size={16} aria-hidden="true" />
             <p>
-              <strong>A space that’s yours.</strong> Your property information,
+              <strong>Your private workspace.</strong> Your property information,
               photos, and documents are private to your account. Public sharing
               and publishing are coming later.
             </p>

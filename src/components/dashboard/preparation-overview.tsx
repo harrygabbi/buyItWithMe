@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { getReadiness, getStatus } from "@/lib/properties/readiness";
 import {
   PropertyImage,
-  StatusBadge,
   Readiness,
 } from "@/components/properties/property-ui";
 import type { Property } from "@/types/property";
@@ -27,17 +26,14 @@ export function PreparationOverview({
   const ready = active.filter(
     (property) => getStatus(property) === "Ready to Publish",
   );
-  const recent = [...active]
-    .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
-    .slice(0, 4);
   return (
     <>
       <div className="preparation-grid">
         <Card className="attention-panel">
           <div className="preparation-heading">
             <div>
-              <span className="eyebrow">YOUR NEXT STEP</span>
-              <h2>Properties needing attention</h2>
+              <span className="eyebrow">PROPERTY PREPARATION</span>
+              <h2>Needs your attention</h2>
             </div>
             <span className="count-badge">{incomplete.length}</span>
           </div>
@@ -152,52 +148,6 @@ export function PreparationOverview({
           </small>
         </Card>
       </div>
-      <Card className="recent-work-panel">
-        <div className="preparation-heading">
-          <div>
-            <h2>Recently edited</h2>
-            <p>Pick up where you left off.</p>
-          </div>
-          <Link className="panel-link" href="/properties">
-            View all properties
-            <ArrowRight size={15} aria-hidden="true" />
-          </Link>
-        </div>
-        {recent.length ? (
-          <div className="recent-work-list">
-            {recent.map((property) => (
-              <div className="recent-work-item" key={property.id}>
-                <PropertyImage property={property} />
-                <div>
-                  <Link href={`/properties/${property.id}/edit`}>
-                    {property.address?.split(",")[0] || "Untitled property"}
-                  </Link>
-                  <p>
-                    {property.propertyType || "Draft property"} · Updated{" "}
-                    {new Date(property.updatedAt).toLocaleDateString("en-CA", {
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </p>
-                </div>
-                <StatusBadge property={property} />
-                <Button variant="ghost" size="icon" asChild>
-                  <Link
-                    href={`/properties/${property.id}/edit`}
-                    aria-label={`Edit ${property.address}`}
-                  >
-                    <ArrowRight aria-hidden="true" />
-                  </Link>
-                </Button>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="recent-work-empty">
-            Your recently edited properties will appear here.
-          </p>
-        )}
-      </Card>
     </>
   );
 }

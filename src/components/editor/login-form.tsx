@@ -3,8 +3,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowUpRight, House, Layers3, LockKeyhole, ShieldCheck, Sparkles } from "lucide-react";
-import { ArchitectureScene } from "@/components/architecture-scene";
+import { ArrowRight, House, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 export function LoginForm() {
   const router = useRouter();
   const [register, setRegister] = useState(false);
@@ -16,21 +16,20 @@ export function LoginForm() {
   return (
     <div className="auth-page">
       <section className="auth-story" aria-labelledby="auth-story-title">
-        <div className="brand"><span className="brand-mark"><House size={23} aria-hidden="true" /></span>OpenHouse <span className="brand-ai">AI</span></div>
+        <Image src="/images/house.jpg" alt="Contemporary home with an open terrace and pool" fill sizes="(max-width: 700px) 100vw, 55vw" preload className="auth-story-image" />
+        <div className="brand"><House size={26} aria-hidden="true" /> OpenHouse <span className="brand-ai">AI</span></div>
         <div className="auth-story-copy">
-          <span className="hero-kicker"><Sparkles size={13} aria-hidden="true" /> THE FUTURE FEELS LIKE HOME</span>
-          <h2 id="auth-story-title">A better perspective.<br /><span>On every property.</span></h2>
-          <p>One beautiful workspace to bring every detail together. Prepare with confidence. Open the door to what’s next.</p>
+          <span className="eyebrow">A HOME FOR YOUR NEXT CHAPTER</span>
+          <h2 id="auth-story-title">Every home has a story.<br />Start yours here.</h2>
+          <p>The details, the preparation, the possibilities.<br />All together in your private property workspace.</p>
         </div>
-        <ArchitectureScene />
-        <div className="auth-story-footer"><span><ShieldCheck size={16} aria-hidden="true" /> Private by design</span><span><Layers3 size={16} aria-hidden="true" /> Built for realtors</span></div>
+        <span className="auth-story-caption">Considered spaces. Exceptional possibilities.</span>
       </section>
       <div className="auth-form-side">
-      <div className="auth-access-label"><span className="signal-dot" /> YOUR PRIVATE WORKSPACE</div>
+      <div className="auth-access-label">OPENHOUSE / AGENT WORKSPACE</div>
       <Card className="auth-card">
-        <span className="auth-lock"><LockKeyhole size={23} aria-hidden="true" /></span>
         <h1>{register ? "Create your workspace" : "Welcome back"}</h1>
-        <p>{register ? "Your next chapter starts here." : "Your properties. Your possibilities. All here."}</p>
+        <p>{register ? "A place for your properties, from the very first detail." : "Sign in to manage your properties and prepare for what’s next."}</p>
         <form
           onSubmit={async (event) => {
             event.preventDefault();
@@ -118,7 +117,7 @@ export function LoginForm() {
           )}
           <Button type="submit" disabled={busy}>
             {busy ? "Please wait…" : register ? "Create account" : "Sign in"}
-            {!busy && <ArrowUpRight size={16} aria-hidden="true" />}
+            {!busy && <ArrowRight size={16} aria-hidden="true" />}
           </Button>
           <Button
             type="button"

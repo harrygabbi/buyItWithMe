@@ -6,7 +6,7 @@ const inter = Inter({
   display: "swap",
 });
 import "./globals.css";
-import "./futuristic.css";
+import "./workspace.css";
 import { currentUser } from "@/lib/server/auth";
 import { AppShell } from "@/components/app-shell";
 export const metadata: Metadata = {

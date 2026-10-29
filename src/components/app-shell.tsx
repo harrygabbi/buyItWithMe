@@ -6,12 +6,8 @@ import {
   House,
   LayoutDashboard,
   Building2,
-  CalendarDays,
-  Settings2,
   Menu,
   X,
-  ArrowUpRight,
-  Sparkles,
   ShieldCheck,
 } from "lucide-react";
 import type { Realtor } from "@/lib/server/auth";
@@ -57,7 +53,7 @@ function Navigation({ onNavigate }: { onNavigate?: () => void }) {
         onClick={onNavigate}
       >
         <LayoutDashboard size={19} aria-hidden="true" />
-        Dashboard
+        Overview
       </Link>
       <Link
         className={`nav-item ${pathname.startsWith("/properties") ? "active" : ""}`}
@@ -66,18 +62,8 @@ function Navigation({ onNavigate }: { onNavigate?: () => void }) {
         onClick={onNavigate}
       >
         <Building2 size={19} aria-hidden="true" />
-        My Properties
+        Properties
       </Link>
-      {[
-        { label: "Open Houses", icon: CalendarDays },
-        { label: "Settings", icon: Settings2 },
-      ].map(({ label, icon: Icon }) => (
-        <div className="nav-item upcoming" key={label}>
-          <Icon size={19} aria-hidden="true" />
-          {label}
-          <span className="soon">Soon</span>
-        </div>
-      ))}
     </nav>
   );
 }
@@ -140,13 +126,8 @@ export function AppShell({
         <div className="workspace-label">YOUR WORKSPACE</div>
         <Navigation />
         <div className="sidebar-bottom">
-          <div className="sidebar-note">
-            <Sparkles size={19} aria-hidden="true" />
-            <strong>Great homes.<br />Greater possibilities.</strong>
-            <p>Make your next first impression exceptional.</p>
-            <Link href="/properties/new">Create a property <ArrowUpRight size={14} aria-hidden="true" /></Link>
-          </div>
           <Profile user={user} />
+          <SignOutButton />
         </div>
       </aside>
       <dialog
@@ -201,7 +182,7 @@ export function AppShell({
           {children}
         </main>
         <footer className="footer">
-          <span>OpenHouse AI <span className="footer-dot">/</span> A new perspective on property</span>
+          <span>OpenHouse AI <span className="footer-dot">/</span> Prepared with care.</span>
           <span className="footer-security"><ShieldCheck size={12} aria-hidden="true" /> Private workspace · CAD pricing</span>
         </footer>
       </div>
